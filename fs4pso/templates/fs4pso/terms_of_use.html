@@ -43,14 +43,13 @@
 	</head>
   <body>
   	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="/">FS4PSO</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> 
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
       </button>
-         
+
       <nav class="collapse navbar-collapse" id="navbarSupportedContent1">
             <ul class="navbar-nav mr-auto">
                <li class="nav-item active"> <a class="nav-link" href="/write"> 글쓰기 <span class="sr-only">(current)</span></a> </li> 
-               <li class="nav-item"> <a class="nav-link" href="#">타임라인</a> </li>
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 과목 </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
@@ -64,11 +63,11 @@
             <a href=""><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 로그인 </button></a>
          </div>
          <div class="form-inline my-2 my-lg-0">
-            <a href="/signup"><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 회원가입 </button></a>
+            <a href="/terms/"><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 회원가입 </button></a>
          </div>
          </nav>
    </nav>
-   
+
 	<div class="container">
 	  <div class="row">
 	    <div class="col-sm-3">
@@ -92,13 +91,9 @@
 			<p>제6조 (이용자 게시물의 삭제 및 서비스 이용 제한)프로그래밍 소모임은 서비스용 설비의 용량에 여유가 없다고 판단되는 경우 이용자 의 서비스 이용을 부분적으로 제한 또는 등록한 내용물의 변형 및 삭제를 할 수 있습니다. 이에 해당하는 상황에서는 해당 이용자에게 해당 내용을 사전에 통보 합니다.</p>
 			<p>제7조 ("피드백 사이트"의 의무)" 피드백 사이트"는 법령과 이 약관이 금지하거나 공서양속에 반하는 행위를 하지 않으며 이 약관이 정하는 바에 따라 지속적이고, 안정적으로 서비스를 제공하는데 최선을 다하여야 합니다.</p>
 			<p>제8조 (재판권 및 준거법)"학교 웹사이트"와 이용자 간에 발생한 모든 분쟁에 관한 소송은 민사소송법상의 관할법원에 제기 합니다.</p>
-	    <div class="form-group form-check">
-	      <label class="form-check-label">
-	        <input class="form-check-input" type="checkbox" name="remember"> 동의
-	      </label>
-	    </div>
 	    <br>
-	    <button type="submit" class="btn btn-dark btn-block" href="http://localhost:8000/signup/"> 다음 </button>
+	    <a href="/signup/"> <button type="button" class="btn btn-dark btn-block" href="/signup/"> 동의 </button></a>
+	    <a href="/"><button type="button" class="btn btn-dark btn-block" href="/"> 동의하지 않음 </button></a>
 	  	<div class="col-sm-3">
 	    </div>
 	   	</div>

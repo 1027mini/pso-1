@@ -20,28 +20,26 @@
 
         <body>
         <!-- 민영이와 정석이가 만든 맨 위 네비게이션 바-->
-                <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="/">FS4PSO</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span></button>
-         <nav class="collapse navbar-collapse" id="navbarSupportedContent1">
-            <ul class="navbar-nav mr-auto">
-               <li class="nav-item active"> <a class="nav-link" href="/write"> 글쓰기 <span class="sr-only">(current)</span></a> </li> 
-               <li class="nav-item"> <a class="nav-link" href="#"> 타임라인 </a> </li>
-               <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 과목 </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                            {% for subject in subjects %}
-                                <a class="dropdown-item" href="#">{{ subject.subject }}</a>
-                            {% endfor %}
-                          </div>
-                </li>
-            </ul>
-         <div class="form-inline my-2 my-lg-0">
-            <a href="/login"><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 로그인 </button></a>
-         </div>
-         <div class="form-inline my-2 my-lg-0">
-            <a href="/signup"><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 회원가입 </button></a>
-         </div>
-          </nav>
-      </nav>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="/">FS4PSO</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span></button>
+               <nav class="collapse navbar-collapse" id="navbarSupportedContent1">
+                  <ul class="navbar-nav mr-auto">
+                     <li class="nav-item"> <a class="nav-link" href="/write/"> 글쓰기 <span class="sr-only">(current)</span></a> </li>
+                     <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 과목 </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                          {% for subject in subjects %}
+                          <a class="dropdown-item" href=/subject/{{ subject.id }}>{{ subject.subject }}</a>
+                          {% endfor %}
+                       </li>
+                  </ul>
+               <div class="form-inline my-2 my-lg-0">
+                  <a href="/login/"><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 로그인 </button></a>
+               </div>
+               <div class="form-inline my-2 my-lg-0">
+                  <a href="/terms/"><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 회원가입 </button></a>
+               </div>
+                </nav>
+            </nav>
         <div class="container">
                 <br>
                 <br>
@@ -71,39 +69,41 @@
 
                 <div class="view_comments" style="margin-left:10px">  <!--이곳은 댓글이 입력되는 공간-->
                 <hr>
-                    <form action="">
-                        <div class="comments">
+                    <form  method="POST" class="comment-form">
+                      {% csrf_token %}
+              				{{ form.as_p }}
+                    <!--    <div class="comments">
                                 <textarea class="form-control" placeholder="댓글을 입력해주세요." row="10" id="comment" name="text"></textarea>
                              <p></p>
-                        </div>
-                        <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#ModalReply">댓글 달기</button>
+                        </div>-->
+                        <button type="submit" class="btn btn-outline-dark" data-toggle="modal" data-target="#ModalReply">댓글 달기</button>
                     </form>
                 <hr>
-                </div>
+              </div>
 
 
-                 <!--Modal(팝업)-->
+                 <!--Modal(팝업)
                  <div class="modal fade" id="ModalReply">
                                           <div class="modal-dialog">
                                             <div class="modal-content">
-                                            <!-- Modal Header(팝업 맨 위) -->
+                                            # Modal Header(팝업 맨 위)
                                                     <div class="modal-header">
                                                         <h4 class="modal-title">알림</h4>
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                       </div>
-                                                <!-- Modal body(팝업 중간) -->
+                                                # Modal body(팝업 중간)
                                                 <div class="modal-body">
                                                         댓글이 등록되었습니다.
                                                 </div>
-                                                <!-- Modal footer (팝업 내용)-->
+                                                # Modal footer (팝업 내용)
                                                 <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-dark" data-dismiss="modal">닫기</button>
                                                 </div>
                                             </div>
                                           </div>
-                                </div>
+                                </div> -->
 
-
+                        {% for comment in comments %}
                         <div class="row">
                                 <div class="col-md-12">
                                         <div class="media">
@@ -111,26 +111,15 @@
                                                         <img src="" alt="profile">
                                                 </a>
                                                 <div class="media-body">
-                                                        <h4> 김정석 - <em> 2018.08.02.</em></h4>
+                                                        <h4> {{comment.name}} <em> {{comment.created_date}}</em></h4>
                                                         <p>
-                                                                '댓글 내용 입력해주세요.'
+                                                                {{comment.text}}
                                                         </p>
-
-
                                                 </div>
-                                        </div>
-                                        <div class="media">
-                                        <a href="#" class="profile_img pull-left">
-                                                        <img src="" alt="profile">
-                                                </a>
-                                                <div class="media-body">
-                                                        <h4> 김민영 - <em> 2018.08.02.</em></h4>
-                                                        <p>
-                                                                '김민영 잘생긴듯....댓글 내용 입력해주세요.'
-                                                        </p>        
                                         </div>
                                 </div>
                         </div>
+                        {% endfor %}
                 <hr>
 
 

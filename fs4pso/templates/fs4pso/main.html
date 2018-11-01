@@ -15,25 +15,31 @@
 
 <body>
 
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="">FS4PSO</a>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="/">FS4PSO</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span></button>
          <nav class="collapse navbar-collapse" id="navbarSupportedContent1">
             <ul class="navbar-nav mr-auto">
-               <li class="nav-item active"> <a class="nav-link" href="write/"> 글쓰기 <span class="sr-only">(current)</span></a> </li>
-               <li class="nav-item"> <a class="nav-link" href="#"> 타임라인 </a> </li>
+               <li class="nav-item"> <a class="nav-link" href="/write/"> 글쓰기 <span class="sr-only">(current)</span></a> </li>
                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 과목 </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                     {% for subject in subjects %}
-                      <a class="dropdown-item" href=/{{ subject.subject }}>{{ subject.subject }}</a>
+                    <a class="dropdown-item" href=/subject/{{ subject.id }}>{{ subject.subject }}</a>
                     {% endfor %}
                  </li>
             </ul>
+        {% if user.is_authenticated %}
+        <li class="nav-item">안녕하세요, {{ user.username }}.</li>
+        <div class="form-inline my-2 my-lg-0">
+          <a href="{% url 'logout' %}"><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 로그아웃 </button></a>
+        </div>
+        {% else %}
          <div class="form-inline my-2 my-lg-0">
-            <a href="login/"><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 로그인 </button></a>
+            <a href="{% url 'login' %}"><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 로그인 </button></a>
          </div>
          <div class="form-inline my-2 my-lg-0">
-            <a href="signup/"><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 회원가입 </button></a>
+            <a href="/terms/"><button class="btn btn-secondary my-2 my-sm-0" type="submit"> 회원가입 </button></a>
          </div>
+         {% endif %}
           </nav>
       </nav>
 
